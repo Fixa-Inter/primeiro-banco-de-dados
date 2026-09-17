@@ -54,7 +54,10 @@ CREATE TABLE contrato (
         REFERENCES plano(id),
 
     FOREIGN KEY (fk_endereco_id)
-        REFERENCES endereco(id)
+        REFERENCES endereco(id),
+
+    CONSTRAINT ck_contrato_datas
+        CHECK (data_vencimento > data_inicio)
 );
  
 CREATE TABLE usuario (
