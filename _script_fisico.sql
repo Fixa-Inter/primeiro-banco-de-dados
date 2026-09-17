@@ -13,11 +13,12 @@ DROP TABLE IF EXISTS tipo_instituicao;
 -- Create tables
 CREATE TABLE instituicao (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR (50),
+    nome VARCHAR(50),
     esta_ativo BOOLEAN DEFAULT true,
-    email_corporativo VARCHAR (50),
+    email_corporativo VARCHAR(50),
     data_cadastro DATE DEFAULT current_date,
-    cnpj VARCHAR (14)
+    cnpj VARCHAR(14),
+    dominio_email VARCHAR(100) UNIQUE
 );
  
 CREATE TABLE plano (
