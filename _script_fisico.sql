@@ -1,14 +1,16 @@
 -- Drop tables
-DROP TABLE IF EXISTS foto_usuario;
-DROP TABLE IF EXISTS pagamento;
-DROP TABLE IF EXISTS endereco;
-DROP TABLE IF EXISTS usuario;
-DROP TABLE IF EXISTS contrato;
-DROP TABLE IF EXISTS super_administrador;
-DROP TABLE IF EXISTS plano;
-DROP TABLE IF EXISTS instituicao;
+DROP TABLE IF EXISTS foto_usuario CASCADE;
+DROP TABLE IF EXISTS pagamento CASCADE;
+DROP TABLE IF EXISTS usuario CASCADE;
+DROP TABLE IF EXISTS contrato CASCADE;
+DROP TABLE IF EXISTS endereco CASCADE;
+DROP TABLE IF EXISTS super_administrador CASCADE;
+DROP TABLE IF EXISTS plano CASCADE;
+DROP TABLE IF EXISTS instituicao CASCADE;
+
 
 -- Create tables
+
 CREATE TABLE instituicao (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50),
@@ -17,7 +19,8 @@ CREATE TABLE instituicao (
     dominio_email VARCHAR(100) UNIQUE,
     tipo_instituicao INTEGER
 );
- 
+
+
 CREATE TABLE plano (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50),
@@ -29,15 +32,34 @@ CREATE TABLE plano (
     CONSTRAINT ck_plano_duracao
         CHECK (duracao_meses > 0)
 );
- 
- 
+
+
 CREATE TABLE super_administrador (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100),
     senha_hash VARCHAR(255),
     email VARCHAR(100) UNIQUE
 );
- 
+
+
+CREATE TABLE endereco (
+    id SERIAL PRIMARY KEY,
+    rua VARCHAR(40),
+    bairro VARCHAR(40),
+    complemento VARCHAR(50),
+    cidade VARCHAR(40),
+    estado CHAR(2),
+    numero VARCHAR(10),
+    cep CHAR(8),
+    fk_instituicao_id INTEGER,
+    cnpj CHAR(14) UNIQUE,
+    data_criacao TIMESTAMP DEFAULT NOW(),
+
+    FOREIGN KEY (fk_instituicao_id)
+        REFERENCES instituicao(id)
+);
+
+
 CREATE TABLE contrato (
     id SERIAL PRIMARY KEY,
     data_inicio DATE DEFAULT current_date,
@@ -56,7 +78,8 @@ CREATE TABLE contrato (
     CONSTRAINT ck_contrato_datas
         CHECK (data_vencimento > data_inicio)
 );
- 
+
+
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
@@ -76,24 +99,8 @@ CREATE TABLE usuario (
     FOREIGN KEY (fk_endereco_id)
         REFERENCES endereco(id)
 );
- 
-CREATE TABLE endereco (
-    id SERIAL PRIMARY KEY,
-    rua VARCHAR(40),
-    bairro VARCHAR(40),
-    complemento VARCHAR(50),
-    cidade VARCHAR(40),
-    estado CHAR(2),
-    numero VARCHAR(10),
-    cep CHAR(8),
-    fk_instituicao_id INTEGER,
-    cnpj CHAR(14) UNIQUE,
-    data_criacao TIMESTAMP DEFAULT NOW(),
 
-    FOREIGN KEY (fk_instituicao_id)
-        REFERENCES instituicao(id)
-);
- 
+
 CREATE TABLE pagamento (
     id SERIAL PRIMARY KEY,
     valor DECIMAL(10,2) CHECK (valor > -1),
@@ -106,7 +113,8 @@ CREATE TABLE pagamento (
     FOREIGN KEY (fk_contrato_id)
         REFERENCES contrato(id)
 );
- 
+
+
 CREATE TABLE foto_usuario (
     id SERIAL PRIMARY KEY,
     data_registro TIMESTAMP DEFAULT NOW(),
