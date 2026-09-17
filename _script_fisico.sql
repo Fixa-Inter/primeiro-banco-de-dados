@@ -87,15 +87,15 @@ CREATE TABLE endereco (
  
 CREATE TABLE pagamento (
     id SERIAL PRIMARY KEY,
-    valor FLOAT CHECK (valor > -1),
+    valor DECIMAL(10,2) CHECK (valor > -1),
     data_pagamento TIMESTAMP DEFAULT current_timestamp,
     foi_realizado BOOLEAN DEFAULT false,
     fk_contrato_id INTEGER,
     fk_metodo_pagamento_id INTEGER,
- 
+
     FOREIGN KEY (fk_contrato_id)
         REFERENCES contrato(id),
- 
+
     FOREIGN KEY (fk_metodo_pagamento_id)
         REFERENCES metodo_pagamento(id)
 );
