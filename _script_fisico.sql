@@ -107,7 +107,7 @@ CREATE TABLE pagamento (
  
 CREATE TABLE foto_usuario (
     id SERIAL PRIMARY KEY,
-    data_registro DATE DEFAULT current_date,
+    data_registro TIMESTAMP DEFAULT current_date,
     url VARCHAR(255),
     fk_usuario_id INTEGER,
 
