@@ -22,9 +22,9 @@ CREATE TABLE instituicao (
  
 CREATE TABLE plano (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR (50),
-    valor FLOAT NOT NULL CHECK (valor > -1),
-    duracao_meses INTEGER CHECK (valor > -1),
+    nome VARCHAR(50),
+    valor_mensal FLOAT NOT NULL CHECK (valor_mensal > -1),
+    duracao_meses INTEGER CHECK (valor_mensal > -1),
     descricao TEXT
 );
  
