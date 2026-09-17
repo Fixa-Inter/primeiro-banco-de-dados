@@ -37,7 +37,7 @@ CREATE TABLE super_administrador (
     id SERIAL PRIMARY KEY,
     funcao VARCHAR(50),
     nome VARCHAR(50),
-    senha_hash VARCHAR(50),
+    senha_hash VARCHAR(64),
     email VARCHAR(50) UNIQUE
 );
  
