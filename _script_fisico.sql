@@ -92,6 +92,7 @@ CREATE TABLE pagamento (
     foi_realizado BOOLEAN DEFAULT false,
     fk_contrato_id INTEGER,
     fk_metodo_pagamento_id INTEGER,
+    data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_contrato_id)
         REFERENCES contrato(id),
