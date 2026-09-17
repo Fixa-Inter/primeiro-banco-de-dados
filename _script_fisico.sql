@@ -60,18 +60,19 @@ CREATE TABLE contrato (
  
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR (50) NOT NULL,
-    senha_hash VARCHAR (50),
+    nome VARCHAR(50) NOT NULL,
+    senha_hash VARCHAR(50),
     esta_ativo BOOLEAN DEFAULT true,
-    email VARCHAR (50) UNIQUE,
+    email VARCHAR(50) UNIQUE,
     data_criacao DATE DEFAULT current_date,
-    cargo VARCHAR (50),
+    cargo VARCHAR(50),
     fk_instituicao_id INTEGER,
     fk_tipo_de_acesso_id INTEGER,
- 
+    data_ultimo_acesso DATE DEFAULT current_date,
+
     FOREIGN KEY (fk_instituicao_id)
         REFERENCES instituicao(id),
- 
+
     FOREIGN KEY (fk_tipo_de_acesso_id)
         REFERENCES tipo_de_acesso(id)
 );
