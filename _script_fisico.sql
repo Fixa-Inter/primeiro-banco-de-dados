@@ -70,7 +70,7 @@ CREATE TABLE usuario (
     email VARCHAR(100) NOT NULL,
     data_criacao TIMESTAMP DEFAULT NOW(),
     cargo VARCHAR(50),
-    tipo_de_acesso VARCHAR(20),
+    tipo_acesso INTEGER,
     fk_endereco_id INTEGER,
     data_nascimento DATE,
     primeiro_acesso BOOLEAN DEFAULT TRUE,
