@@ -57,12 +57,15 @@ CREATE TABLE usuario (
     nome VARCHAR(50) NOT NULL,
     senha_hash VARCHAR(64),
     esta_ativo BOOLEAN DEFAULT true,
-    email VARCHAR(50) UNIQUE,
+    email VARCHAR(50),
     data_criacao DATE DEFAULT current_date,
     cargo VARCHAR(50),
     fk_instituicao_id INTEGER,
     tipo_de_acesso VARCHAR(20),
     data_ultimo_acesso DATE DEFAULT current_date,
+
+    CONSTRAINT uk_email
+        UNIQUE (email),
 
     FOREIGN KEY (fk_instituicao_id)
         REFERENCES instituicao(id)
