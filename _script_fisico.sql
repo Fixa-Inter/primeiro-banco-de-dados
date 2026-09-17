@@ -42,7 +42,7 @@ CREATE TABLE metodo_pagamento (
  
 CREATE TABLE super_administrador (
     id SERIAL PRIMARY KEY,
-    cargo VARCHAR(50),
+    funcao VARCHAR(50),
     nome VARCHAR(50),
     senha_hash VARCHAR(50),
     email VARCHAR(50) UNIQUE
