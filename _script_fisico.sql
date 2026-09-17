@@ -47,9 +47,13 @@ CREATE TABLE contrato (
     data_vencimento DATE,
     fk_plano_id INTEGER,
     esta_vigente BOOLEAN DEFAULT true,
+    fk_endereco_id INTEGER,
 
     FOREIGN KEY (fk_plano_id)
-        REFERENCES plano(id)
+        REFERENCES plano(id),
+
+    FOREIGN KEY (fk_endereco_id)
+        REFERENCES endereco(id)
 );
  
 CREATE TABLE usuario (
