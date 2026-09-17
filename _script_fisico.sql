@@ -25,7 +25,8 @@ CREATE TABLE plano (
     nome VARCHAR(50),
     valor_mensal DECIMAL(10,2) NOT NULL CHECK (valor_mensal > -1),
     duracao_meses INTEGER CHECK (valor_mensal > -1),
-    descricao VARCHAR(255)
+    descricao VARCHAR(255),
+    data_criacao TIMESTAMP DEFAULT NOW()
 );
  
 CREATE TABLE metodo_pagamento (
