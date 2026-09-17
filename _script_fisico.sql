@@ -75,7 +75,7 @@ CREATE TABLE endereco (
     complemento VARCHAR(50),
     cidade VARCHAR(40),
     estado VARCHAR(40),
-    numero INTEGER,
+    numero VARCHAR(10),
     cep VARCHAR(9),
     fk_instituicao_id INTEGER,
     cnpj CHAR(14) UNIQUE,
