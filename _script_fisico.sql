@@ -61,7 +61,7 @@ CREATE TABLE usuario (
     data_criacao DATE DEFAULT current_date,
     cargo VARCHAR(50),
     fk_instituicao_id INTEGER,
-    tipo_de_acesso VARCHAR(10),
+    tipo_de_acesso VARCHAR(20),
     data_ultimo_acesso DATE DEFAULT current_date,
 
     FOREIGN KEY (fk_instituicao_id)
