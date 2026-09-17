@@ -57,7 +57,7 @@ CREATE TABLE usuario (
     nome VARCHAR(50) NOT NULL,
     senha_hash VARCHAR(64),
     esta_ativo BOOLEAN DEFAULT true,
-    email VARCHAR(50),
+    email VARCHAR(50) NOT NULL,
     data_criacao DATE DEFAULT current_date,
     cargo VARCHAR(50),
     fk_instituicao_id INTEGER,
