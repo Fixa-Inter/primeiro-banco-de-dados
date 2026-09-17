@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS endereco;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS contrato;
 DROP TABLE IF EXISTS super_administrador;
-DROP TABLE IF EXISTS metodo_pagamento;
 DROP TABLE IF EXISTS plano;
 DROP TABLE IF EXISTS instituicao;
 DROP TABLE IF EXISTS tipo_instituicao;
@@ -31,10 +30,6 @@ CREATE TABLE plano (
         CHECK (duracao_meses > 0)
 );
  
-CREATE TABLE metodo_pagamento (
-    id SERIAL PRIMARY KEY,
-    descricao TEXT
-);
  
 CREATE TABLE super_administrador (
     id SERIAL PRIMARY KEY,
@@ -105,14 +100,11 @@ CREATE TABLE pagamento (
     data_pagamento TIMESTAMP DEFAULT current_timestamp,
     foi_realizado BOOLEAN DEFAULT false,
     fk_contrato_id INTEGER,
-    fk_metodo_pagamento_id INTEGER,
+    metodo_pagamento INTEGER,
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_contrato_id)
-        REFERENCES contrato(id),
-
-    FOREIGN KEY (fk_metodo_pagamento_id)
-        REFERENCES metodo_pagamento(id)
+        REFERENCES contrato(id)
 );
  
 CREATE TABLE foto_usuario (
