@@ -74,7 +74,7 @@ CREATE TABLE endereco (
     bairro VARCHAR(40),
     complemento VARCHAR(50),
     cidade VARCHAR(40),
-    estado VARCHAR(40),
+    estado CHAR(2),
     numero VARCHAR(10),
     cep VARCHAR(9),
     fk_instituicao_id INTEGER,
