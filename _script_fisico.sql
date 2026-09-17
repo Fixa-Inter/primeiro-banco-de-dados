@@ -43,8 +43,8 @@ CREATE TABLE contrato (
     data_inicio DATE DEFAULT current_date,
     data_vencimento DATE,
     fk_plano_id INTEGER,
-    esta_vigente BOOLEAN DEFAULT true,
     fk_endereco_id INTEGER,
+    status_contrato INTEGER,
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_plano_id)
