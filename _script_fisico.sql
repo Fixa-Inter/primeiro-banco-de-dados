@@ -23,9 +23,9 @@ CREATE TABLE instituicao (
 CREATE TABLE plano (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50),
-    valor_mensal FLOAT NOT NULL CHECK (valor_mensal > -1),
+    valor_mensal DECIMAL(10,2) NOT NULL CHECK (valor_mensal > -1),
     duracao_meses INTEGER CHECK (valor_mensal > -1),
-    descricao TEXT
+    descricao VARCHAR(255)
 );
  
 CREATE TABLE metodo_pagamento (
