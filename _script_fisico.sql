@@ -17,7 +17,7 @@ CREATE TABLE instituicao (
     email_corporativo VARCHAR(50),
     data_cadastro DATE DEFAULT current_date,
     dominio_email VARCHAR(100) UNIQUE,
-    tipo_instituicao INTEGER
+    tipo_instituicao INTEGER NOT NULL
 );
 
 
@@ -66,7 +66,7 @@ CREATE TABLE contrato (
     data_vencimento DATE,
     fk_plano_id INTEGER,
     fk_endereco_id INTEGER,
-    status_contrato INTEGER,
+    status_contrato INTEGER NOT NULL,
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_plano_id)
@@ -88,7 +88,7 @@ CREATE TABLE usuario (
     email VARCHAR(100) NOT NULL,
     data_criacao TIMESTAMP DEFAULT NOW(),
     cargo VARCHAR(50),
-    tipo_acesso INTEGER,
+    tipo_acesso INTEGER NOT NULL,
     fk_endereco_id INTEGER,
     data_nascimento DATE,
     primeiro_acesso BOOLEAN DEFAULT TRUE,
@@ -107,7 +107,7 @@ CREATE TABLE pagamento (
     data_pagamento TIMESTAMP DEFAULT current_timestamp,
     foi_realizado BOOLEAN DEFAULT false,
     fk_contrato_id INTEGER,
-    metodo_pagamento INTEGER,
+    metodo_pagamento INTEGER NOT NULL,
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_contrato_id)
