@@ -68,7 +68,7 @@ CREATE TABLE usuario (
     senha_hash VARCHAR(255),
     esta_ativo BOOLEAN DEFAULT FALSE,
     email VARCHAR(100) NOT NULL,
-    data_criacao DATE DEFAULT current_date,
+    data_criacao TIMESTAMP DEFAULT NOW(),
     cargo VARCHAR(50),
     tipo_de_acesso VARCHAR(20),
     fk_endereco_id INTEGER,
