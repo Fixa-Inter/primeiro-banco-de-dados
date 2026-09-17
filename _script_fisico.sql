@@ -79,6 +79,7 @@ CREATE TABLE endereco (
     cep VARCHAR(9),
     fk_instituicao_id INTEGER,
     cnpj CHAR(14) UNIQUE,
+    data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_instituicao_id)
         REFERENCES instituicao(id)
