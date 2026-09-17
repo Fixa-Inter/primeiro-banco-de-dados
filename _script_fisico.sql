@@ -56,19 +56,20 @@ CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     senha_hash VARCHAR(64),
-    esta_ativo BOOLEAN DEFAULT true,
+    esta_ativo BOOLEAN DEFAULT FALSE,
     email VARCHAR(50) NOT NULL,
     data_criacao DATE DEFAULT current_date,
     cargo VARCHAR(50),
-    fk_instituicao_id INTEGER,
     tipo_de_acesso VARCHAR(20),
-    data_ultimo_acesso DATE DEFAULT current_date,
+    fk_endereco_id INTEGER,
+    data_nascimento DATE,
+    primeiro_acesso BOOLEAN DEFAULT TRUE,
 
     CONSTRAINT uk_email
         UNIQUE (email),
 
-    FOREIGN KEY (fk_instituicao_id)
-        REFERENCES instituicao(id)
+    FOREIGN KEY (fk_endereco_id)
+        REFERENCES endereco(id)
 );
  
 CREATE TABLE endereco (
