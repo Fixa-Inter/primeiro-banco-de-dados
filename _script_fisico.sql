@@ -52,7 +52,8 @@ CREATE TABLE contrato (
     data_inicio DATE DEFAULT current_date,
     data_vencimento DATE,
     fk_plano_id INTEGER,
- 
+    esta_vigente BOOLEAN DEFAULT true,
+
     FOREIGN KEY (fk_plano_id)
         REFERENCES plano(id)
 );
