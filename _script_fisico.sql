@@ -76,7 +76,7 @@ CREATE TABLE endereco (
     cidade VARCHAR(40),
     estado CHAR(2),
     numero VARCHAR(10),
-    cep VARCHAR(9),
+    cep CHAR(8),
     fk_instituicao_id INTEGER,
     cnpj CHAR(14) UNIQUE,
     data_criacao TIMESTAMP DEFAULT NOW(),
