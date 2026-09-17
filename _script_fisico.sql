@@ -70,15 +70,16 @@ CREATE TABLE usuario (
  
 CREATE TABLE endereco (
     id SERIAL PRIMARY KEY,
-    rua VARCHAR (40),
-    bairro VARCHAR (40),
-    complemento VARCHAR (50),
-    cidade VARCHAR (40),
-    estado VARCHAR (40),
+    rua VARCHAR(40),
+    bairro VARCHAR(40),
+    complemento VARCHAR(50),
+    cidade VARCHAR(40),
+    estado VARCHAR(40),
     numero INTEGER,
-	cep VARCHAR (9),
+    cep VARCHAR(9),
     fk_instituicao_id INTEGER,
- 
+    cnpj CHAR(14) UNIQUE,
+
     FOREIGN KEY (fk_instituicao_id)
         REFERENCES instituicao(id)
 );
