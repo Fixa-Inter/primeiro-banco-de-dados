@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS contrato;
 DROP TABLE IF EXISTS super_administrador;
 DROP TABLE IF EXISTS plano;
 DROP TABLE IF EXISTS instituicao;
-DROP TABLE IF EXISTS tipo_instituicao;
 
 -- Create tables
 CREATE TABLE instituicao (
@@ -15,7 +14,8 @@ CREATE TABLE instituicao (
     nome VARCHAR(50),
     email_corporativo VARCHAR(50),
     data_cadastro DATE DEFAULT current_date,
-    dominio_email VARCHAR(100) UNIQUE
+    dominio_email VARCHAR(100) UNIQUE,
+    tipo_instituicao INTEGER
 );
  
 CREATE TABLE plano (
