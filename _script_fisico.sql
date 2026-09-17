@@ -48,6 +48,7 @@ CREATE TABLE contrato (
     fk_plano_id INTEGER,
     esta_vigente BOOLEAN DEFAULT true,
     fk_endereco_id INTEGER,
+    data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_plano_id)
         REFERENCES plano(id),
