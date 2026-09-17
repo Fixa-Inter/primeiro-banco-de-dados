@@ -17,7 +17,6 @@ CREATE TABLE instituicao (
     esta_ativo BOOLEAN DEFAULT true,
     email_corporativo VARCHAR(50),
     data_cadastro DATE DEFAULT current_date,
-    cnpj VARCHAR(14),
     dominio_email VARCHAR(100) UNIQUE
 );
  
