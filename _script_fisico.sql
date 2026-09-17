@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS contrato;
 DROP TABLE IF EXISTS super_administrador;
 DROP TABLE IF EXISTS metodo_pagamento;
 DROP TABLE IF EXISTS plano;
-DROP TABLE IF EXISTS tipo_de_acesso;
 DROP TABLE IF EXISTS instituicao;
 DROP TABLE IF EXISTS tipo_instituicao;
 
@@ -19,12 +18,6 @@ CREATE TABLE instituicao (
     email_corporativo VARCHAR (50),
     data_cadastro DATE DEFAULT current_date,
     cnpj VARCHAR (14)
-);
- 
-CREATE TABLE tipo_de_acesso (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR (50) NOT NULL,
-    descricao TEXT
 );
  
 CREATE TABLE plano (
