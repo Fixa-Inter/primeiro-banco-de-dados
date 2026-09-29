@@ -56,7 +56,7 @@ CREATE TABLE endereco (
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_instituicao_id)
-        REFERENCES instituicao(id)
+        REFERENCES instituicao(id) ON DELETE CASCADE
 );
 
 
@@ -70,10 +70,10 @@ CREATE TABLE contrato (
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_plano_id)
-        REFERENCES plano(id),
+        REFERENCES plano(id) ON DELETE CASCADE,
 
     FOREIGN KEY (fk_endereco_id)
-        REFERENCES endereco(id),
+        REFERENCES endereco(id) ON DELETE CASCADE,
 
     CONSTRAINT ck_contrato_datas
         CHECK (data_vencimento > data_inicio)
@@ -97,7 +97,7 @@ CREATE TABLE usuario (
         UNIQUE (email),
 
     FOREIGN KEY (fk_endereco_id)
-        REFERENCES endereco(id)
+        REFERENCES endereco(id) ON DELETE CASCADE
 );
 
 
@@ -111,7 +111,7 @@ CREATE TABLE pagamento (
     data_criacao TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (fk_contrato_id)
-        REFERENCES contrato(id)
+        REFERENCES contrato(id) ON DELETE CASCADE
 );
 
 
@@ -122,5 +122,5 @@ CREATE TABLE foto_usuario (
     fk_usuario_id INTEGER,
 
     FOREIGN KEY (fk_usuario_id)
-        REFERENCES usuario(id)
+        REFERENCES usuario(id) ON DELETE CASCADE
 );
