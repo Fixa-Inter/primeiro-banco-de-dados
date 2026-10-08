@@ -93,8 +93,6 @@ CREATE TABLE usuario (
     data_nascimento DATE,
     primeiro_acesso BOOLEAN DEFAULT TRUE,
 
-    CONSTRAINT uk_email
-        UNIQUE (email),
 
     FOREIGN KEY (fk_endereco_id)
         REFERENCES endereco(id) ON DELETE CASCADE
