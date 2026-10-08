@@ -83,7 +83,7 @@ CREATE TABLE contrato (
 CREATE TABLE usuario (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    senha_hash VARCHAR(255),
+    senha_hash VARCHAR(255) NOT NULL,
     esta_ativo BOOLEAN DEFAULT FALSE,
     email VARCHAR(100) NOT NULL,
     data_criacao TIMESTAMP DEFAULT NOW(),
