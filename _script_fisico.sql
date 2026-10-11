@@ -17,7 +17,8 @@ CREATE TABLE instituicao (
     email_corporativo VARCHAR(50) UNIQUE NOT NULL,
     data_cadastro DATE DEFAULT current_date,
     dominio_email VARCHAR(100) UNIQUE,
-    tipo_instituicao INTEGER NOT NULL
+    tipo_instituicao INTEGER NOT NULL,
+    senha_hash VARCHAR(255) NOT NULL
 );
 
 
@@ -122,6 +123,14 @@ CREATE TABLE foto_usuario (
     FOREIGN KEY (fk_usuario_id)
         REFERENCES usuario(id) ON DELETE CASCADE
 );
+
+CREATE TABLE verificacao_cadastro (
+    id SERIAL PRIMARY KEY,
+    codigo_verificacao VARCHAR(6) NOT NULL,
+    data_expiracao TIMESTAMP DEFAULT (NOW() + INTERVAL '5 minutes'),
+    email VARCHAR(100) NOT NULL,
+    esta_valido BOOLEAN DEFAULT TRUE
+)
 
 
 -- Create views
