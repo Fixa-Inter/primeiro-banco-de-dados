@@ -130,13 +130,13 @@ CREATE OR REPLACE VIEW vw_usuario AS (
     FROM usuario u
     JOIN endereco e ON u.fk_endereco_id = e.id
     JOIN instituicao i ON e.fk_instituicao_id = i.id
-)
+);
 
 CREATE OR REPLACE VIEW vw_endereco AS (
     SELECT e.id, e.rua, e.bairro, e.complemento, e.cidade, e.estado, e.numero, e.cep, i.nome AS instituicao_nome
     FROM endereco e
     JOIN instituicao i ON e.fk_instituicao_id = i.id
-)
+);
 
 CREATE OR REPLACE VIEW vw_contrato AS (
     SELECT c.id, c.data_inicio, c.data_vencimento, c.status_contrato, p.nome AS plano_nome, e.estado, i.nome AS instituicao_nome
@@ -144,22 +144,23 @@ CREATE OR REPLACE VIEW vw_contrato AS (
     JOIN plano p ON c.fk_plano_id = p.id
     JOIN endereco e ON c.fk_endereco_id = e.id
     JOIN instituicao i ON e.fk_instituicao_id = i.id
-)
+);
 
 CREATE OR REPLACE VIEW vw_pagamento AS (
     SELECT p.id, p.valor, p.data_pagamento, p.foi_realizado, c.status_contrato, c.data_vencimento, pl.nome AS plano_nome, e.estado, i.nome AS instituicao_nome,
-        WHEN p.data_pagamento > c.data_vencimento and c.data_vencimento < current_date THEN false
+        CASE
+        WHEN p.data_pagamento > c.data_vencimento AND c.data_vencimento < current_date THEN false
         ELSE true
-    END AS esta_em_dia, 
+        END AS esta_em_dia
     FROM pagamento p
     JOIN contrato c ON p.fk_contrato_id = c.id
     JOIN plano pl ON c.fk_plano_id = pl.id
     JOIN endereco e ON c.fk_endereco_id = e.id
     JOIN instituicao i ON e.fk_instituicao_id = i.id
-)
+);
 
 CREATE OR REPLACE VIEW vw_foto_usuario AS (
     SELECT f.id, f.data_registro, f.url, u.nome AS usuario_nome, u.email AS usuario_email
     FROM foto_usuario f
     JOIN usuario u ON f.fk_usuario_id = u.id
-)
+);
