@@ -130,7 +130,7 @@ CREATE TABLE verificacao_cadastro (
     data_expiracao TIMESTAMP DEFAULT (NOW() + INTERVAL '5 minutes'),
     email VARCHAR(100) NOT NULL,
     esta_valido BOOLEAN DEFAULT TRUE
-)
+);
 
 
 -- Create views
@@ -172,4 +172,42 @@ CREATE OR REPLACE VIEW vw_foto_usuario AS (
     SELECT f.id, f.data_registro, f.url, u.nome AS usuario_nome, u.email AS usuario_email
     FROM foto_usuario f
     JOIN usuario u ON f.fk_usuario_id = u.id
+);
+
+CREATE OR REPLACE VIEW vw_instituicao_por_tipo AS (
+    SELECT
+        tipo_instituicao,
+        COUNT(*) AS total
+    FROM instituicao
+    GROUP BY tipo_instituicao
+    ORDER BY total DESC
+);
+
+CREATE OR REPLACE VIEW vw_usuario_por_atividade AS (
+    SELECT
+        esta_ativo,
+        COUNT(*) AS total
+    FROM usuario
+    GROUP BY esta_ativo
+    ORDER BY total DESC
+);
+
+CREATE OR REPLACE VIEW vw_contrato_por_plano AS (
+    SELECT
+        p.nome AS plano_nome,
+        COUNT(c.id) AS total_contratos
+    FROM contrato c
+    JOIN plano p ON c.fk_plano_id = p.id
+    GROUP BY p.nome
+    ORDER BY total_contratos DESC
+);
+
+CREATE OR REPLACE VIEW vw_endereco_por_instituicao AS (
+    SELECT
+        i.nome AS instituicao_nome,
+        COUNT(e.id) AS total_enderecos
+    FROM endereco e
+    JOIN instituicao i ON e.fk_instituicao_id = i.id
+    GROUP BY i.nome
+    ORDER BY total_enderecos DESC
 );
