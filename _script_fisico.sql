@@ -211,3 +211,10 @@ CREATE OR REPLACE VIEW vw_endereco_por_instituicao AS (
     GROUP BY i.nome
     ORDER BY total_enderecos DESC
 );
+
+CREATE OR REPLACE VIEW vw_resumo AS(
+    SELECT
+    (SELECT COUNT(*) FROM instituicao) AS total_instituicoes,
+    (SELECT COUNT(*) FROM usuario WHERE esta_ativo = true) AS usuarios_ativos,
+    (SELECT COUNT(*) FROM endereco) AS total_enderecos
+);
