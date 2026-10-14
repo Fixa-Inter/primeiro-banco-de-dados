@@ -1,5 +1,6 @@
 CREATE TABLE endereco (
     id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
     rua VARCHAR(40),
     bairro VARCHAR(40),
     complemento VARCHAR(50),

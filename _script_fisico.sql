@@ -45,6 +45,7 @@ CREATE TABLE super_administrador (
 
 CREATE TABLE endereco (
     id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
     rua VARCHAR(40),
     bairro VARCHAR(40),
     complemento VARCHAR(50),
@@ -135,20 +136,20 @@ CREATE TABLE verificacao_cadastro (
 
 -- Create views
 CREATE OR REPLACE VIEW vw_usuario AS (
-    SELECT u.id, u.nome, u.email, u.cargo, u.tipo_acesso, u.esta_ativo, u.data_nascimento, u.primeiro_acesso, e.estado, i.nome AS instituicao_nome
+    SELECT u.id, u.nome, u.email, u.cargo, u.tipo_acesso, u.esta_ativo, u.data_nascimento, u.primeiro_acesso, e.nome AS endereco_nome, e.estado, i.nome AS instituicao_nome
     FROM usuario u
     JOIN endereco e ON u.fk_endereco_id = e.id
     JOIN instituicao i ON e.fk_instituicao_id = i.id
 );
 
 CREATE OR REPLACE VIEW vw_endereco AS (
-    SELECT e.id, e.rua, e.bairro, e.complemento, e.cidade, e.estado, e.numero, e.cep, i.nome AS instituicao_nome
+    SELECT e.id, e.nome, e.rua, e.bairro, e.complemento, e.cidade, e.estado, e.numero, e.cep, i.nome AS instituicao_nome
     FROM endereco e
     JOIN instituicao i ON e.fk_instituicao_id = i.id
 );
 
 CREATE OR REPLACE VIEW vw_contrato AS (
-    SELECT c.id, c.data_inicio, c.data_vencimento, c.status_contrato, p.nome AS plano_nome, e.estado, i.nome AS instituicao_nome
+    SELECT c.id, c.data_inicio, c.data_vencimento, c.status_contrato, p.nome AS plano_nome, e.nome AS endereco_nome, e.estado, i.nome AS instituicao_nome
     FROM contrato c
     JOIN plano p ON c.fk_plano_id = p.id
     JOIN endereco e ON c.fk_endereco_id = e.id
@@ -156,7 +157,7 @@ CREATE OR REPLACE VIEW vw_contrato AS (
 );
 
 CREATE OR REPLACE VIEW vw_pagamento AS (
-    SELECT p.id, p.valor, p.data_pagamento, p.foi_realizado, c.status_contrato, c.data_vencimento, pl.nome AS plano_nome, e.estado, i.nome AS instituicao_nome,
+    SELECT p.id, p.valor, p.data_pagamento, p.foi_realizado, c.status_contrato, c.data_vencimento, pl.nome AS plano_nome, e.nome AS endereco_nome, e.estado, i.nome AS instituicao_nome,
         CASE
         WHEN p.data_pagamento > c.data_vencimento AND c.data_vencimento < current_date THEN false
         ELSE true
