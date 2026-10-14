@@ -178,6 +178,7 @@ CREATE OR REPLACE VIEW vw_instituicao_por_tipo AS (
     SELECT
         tipo_instituicao,
         COUNT(*) AS total
+        ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM instituicao), 0) AS percentual
     FROM instituicao
     GROUP BY tipo_instituicao
     ORDER BY total DESC
@@ -187,6 +188,7 @@ CREATE OR REPLACE VIEW vw_usuario_por_atividade AS (
     SELECT
         esta_ativo,
         COUNT(*) AS total
+        ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM usuario), 0) AS percentual
     FROM usuario
     GROUP BY esta_ativo
     ORDER BY total DESC
@@ -196,6 +198,7 @@ CREATE OR REPLACE VIEW vw_contrato_por_plano AS (
     SELECT
         p.nome AS plano_nome,
         COUNT(c.id) AS total_contratos
+        ROUND(COUNT(c.id) * 100.0 / (SELECT COUNT(*) FROM contrato), 0) AS percentual
     FROM contrato c
     JOIN plano p ON c.fk_plano_id = p.id
     GROUP BY p.nome
@@ -206,6 +209,7 @@ CREATE OR REPLACE VIEW vw_endereco_por_instituicao AS (
     SELECT
         i.nome AS instituicao_nome,
         COUNT(e.id) AS total_enderecos
+        ROUND(COUNT(e.id) * 100.0 / (SELECT COUNT(*) FROM endereco), 0) AS percentual
     FROM endereco e
     JOIN instituicao i ON e.fk_instituicao_id = i.id
     GROUP BY i.nome
@@ -215,6 +219,6 @@ CREATE OR REPLACE VIEW vw_endereco_por_instituicao AS (
 CREATE OR REPLACE VIEW vw_resumo AS(
     SELECT
     (SELECT COUNT(*) FROM instituicao) AS total_instituicoes,
-    (SELECT COUNT(*) FROM usuario WHERE esta_ativo = true) AS usuarios_ativos,
+    (SELECT COUNT(*) FROM usuario) AS total_usuarios,
     (SELECT COUNT(*) FROM endereco) AS total_enderecos
 );
