@@ -1,4 +1,5 @@
 -- Drop tables
+DROP TABLE IF EXISTS verificacao_cadastro CASCADE;
 DROP TABLE IF EXISTS foto_usuario CASCADE;
 DROP TABLE IF EXISTS pagamento CASCADE;
 DROP TABLE IF EXISTS usuario CASCADE;
