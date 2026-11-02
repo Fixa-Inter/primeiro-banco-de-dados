@@ -1,4 +1,4 @@
--- Drop tables
+-- Drop tables e create extension
 DROP TABLE IF EXISTS verificacao_cadastro CASCADE;
 DROP TABLE IF EXISTS foto_usuario CASCADE;
 DROP TABLE IF EXISTS pagamento CASCADE;
@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS endereco CASCADE;
 DROP TABLE IF EXISTS super_administrador CASCADE;
 DROP TABLE IF EXISTS plano CASCADE;
 DROP TABLE IF EXISTS instituicao CASCADE;
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
 
 
 -- Create tables
