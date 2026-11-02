@@ -7,4 +7,5 @@ CREATE OR REPLACE VIEW vw_endereco_por_instituicao AS (
     JOIN instituicao i ON e.fk_instituicao_id = i.id
     GROUP BY i.nome
     ORDER BY total_enderecos DESC
+    LIMIT 4
 );

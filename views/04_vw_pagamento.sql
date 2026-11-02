@@ -3,8 +3,7 @@ SELECT p.id, p.valor, p.data_pagamento, p.foi_realizado,
        c.status_contrato, c.data_vencimento, pl.nome AS plano_nome,
        e.nome AS endereco_nome, e.estado, i.nome AS instituicao_nome,
        CASE
-           WHEN p.data_pagamento > c.data_vencimento
-                AND c.data_vencimento < current_date THEN false
+           WHEN p.data_pagamento > c.data_vencimento THEN false
            ELSE true
        END AS esta_em_dia
 FROM pagamento p
